@@ -1,0 +1,13 @@
+{
+  "input": "./photos",
+  "output": "./build_output",
+  "title": "1987 Westfalia Photo Gallery", // Set your gallery title here
+  "sort-albums-by": "title",
+  "sort-media-by": "filename",
+  "download-photos": "copy",
+  "cleanup": true,
+  "theme": "mosiac", // Your theme
+  "css": "./custom.css",
+  "footer": "Copyright 2026", // Set your copyright text here
+  "usage-stats": false
+}
