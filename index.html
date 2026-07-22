@@ -3,79 +3,300 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Westy Photo Gallery</title>
+<title>1987 VW Westfalia Camper Van — For Sale | $15,000 | Ambler, PA</title>
+<meta name="description" content="1987 VW Westfalia Camper Van for sale in Ambler, PA. 135,000 miles, PA inspection through June 2027. $15,000. Well-maintained, runs and drives well.">
 <style>
-  body { margin: 0; font-family: system-ui, sans-serif; background: #111; color: #eee; }
-  h1   { text-align: center; padding: 1.5rem; }
-  .gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 12px;
-    padding: 1rem;
-    max-width: 1200px;
-    margin: 0 auto;
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --vw-blue: #1a3a5c;
+    --vw-light: #2c5f8a;
+    --vw-accent: #e88d3f;
+    --bg: #f5f5f0;
+    --text: #222;
+    --light-text: #666;
+    --border: #ddd;
+    --white: #fff;
   }
-  .gallery a { display: block; }
-  .gallery img { width: 100%; height: 220px; object-fit: cover; border-radius: 8px; transition: transform .2s; }
-  .gallery img:hover { transform: scale(1.03); }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, sans-serif; color: var(--text); background: var(--bg); line-height: 1.6; }
+  .hero { position: relative; min-height: 90vh; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #1a3a5c; }
+  .hero-bg { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url('photos/IMG_1482.jpg') center/cover no-repeat; opacity: 0.45; }
+  .hero-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, rgba(26,58,92,0.3) 0%, rgba(26,58,92,0.6) 50%, rgba(26,58,92,0.85) 100%); }
+  .hero-content { position: relative; z-index: 2; text-align: center; color: var(--white); padding: 2rem; max-width: 800px; }
+  .hero h1 { font-size: 2.8rem; font-weight: 700; margin-bottom: 0.5rem; text-shadow: 0 2px 8px rgba(0,0,0,0.5); letter-spacing: -0.5px; }
+  .hero .subtitle { font-size: 1.3rem; margin-bottom: 1.5rem; opacity: 0.95; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+  .specs-bar { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin: 2rem 0; }
+  .spec-pill { background: rgba(255,255,255,0.15); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.25); border-radius: 50px; padding: 0.6rem 1.4rem; font-size: 1rem; font-weight: 500; }
+  .spec-pill strong { display: block; font-size: 1.3rem; font-weight: 700; }
+  .price-tag { font-size: 2.2rem; font-weight: 800; color: var(--vw-accent); margin: 1.5rem 0; text-shadow: 0 2px 6px rgba(0,0,0,0.5); }
+  .cta-button { display: inline-block; background: var(--vw-accent); color: var(--white); text-decoration: none; padding: 1rem 2.5rem; border-radius: 50px; font-size: 1.1rem; font-weight: 600; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 15px rgba(232,141,63,0.4); }
+  .cta-button:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(232,141,63,0.5); }
+  .scroll-hint { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,0.7); font-size: 0.85rem; animation: bounce 2s infinite; }
+  @keyframes bounce { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(8px); } }
+  .container { max-width: 1000px; margin: 0 auto; padding: 3rem 1.5rem; }
+  .section-title { font-size: 1.8rem; font-weight: 700; color: var(--vw-blue); margin-bottom: 1.5rem; padding-bottom: 0.5rem; border-bottom: 3px solid var(--vw-accent); display: inline-block; }
+  .section { margin-bottom: 3rem; }
+  .overview-box { background: var(--white); border-radius: 12px; padding: 2rem; box-shadow: 0 2px 12px rgba(0,0,0,0.06); font-size: 1.1rem; line-height: 1.8; }
+  .spec-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+  .spec-card { background: var(--white); border-radius: 8px; padding: 1rem 1.2rem; box-shadow: 0 1px 6px rgba(0,0,0,0.05); border-left: 4px solid var(--vw-light); }
+  .spec-card .label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--light-text); margin-bottom: 0.3rem; }
+  .spec-card .value { font-size: 1.1rem; font-weight: 600; color: var(--vw-blue); }
+  .timeline { position: relative; padding-left: 2rem; }
+  .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: linear-gradient(to bottom, var(--vw-light), var(--vw-accent)); border-radius: 2px; }
+  .timeline-item { position: relative; margin-bottom: 1.5rem; }
+  .timeline-item::before { content: ''; position: absolute; left: -2.4rem; top: 0.35rem; width: 14px; height: 14px; border-radius: 50%; background: var(--vw-accent); border: 3px solid var(--white); box-shadow: 0 0 0 2px var(--vw-light); }
+  .timeline-date { font-weight: 700; color: var(--vw-blue); font-size: 1rem; }
+  .timeline-text { color: var(--text); font-size: 0.95rem; margin-top: 0.2rem; }
+  .feature-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem; }
+  .feature-col { background: var(--white); border-radius: 10px; padding: 1.5rem; box-shadow: 0 1px 8px rgba(0,0,0,0.05); }
+  .feature-col h3 { color: var(--vw-blue); font-size: 1.1rem; margin-bottom: 0.8rem; }
+  .feature-col ul { list-style: none; }
+  .feature-col li { padding: 0.4rem 0; border-bottom: 1px solid var(--border); font-size: 0.95rem; position: relative; padding-left: 1.3rem; }
+  .feature-col li::before { content: '\2713'; position: absolute; left: 0; color: var(--vw-accent); font-weight: bold; }
+  .feature-col li.issue::before { content: '\26A0'; color: #d97706; }
+  .story-box { background: var(--white); border-radius: 12px; padding: 2rem; box-shadow: 0 2px 12px rgba(0,0,0,0.06); font-size: 1.05rem; line-height: 1.8; border-left: 5px solid var(--vw-accent); }
+  .gallery-section { margin-bottom: 3rem; }
+  .gallery-section h3 { font-size: 1.2rem; color: var(--vw-blue); margin-bottom: 1rem; font-weight: 600; }
+  .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 12px; }
+  .gallery-grid a { display: block; overflow: hidden; border-radius: 8px; box-shadow: 0 1px 5px rgba(0,0,0,0.1); transition: box-shadow 0.2s, transform 0.2s; aspect-ratio: 4/3; }
+  .gallery-grid a:hover { transform: translateY(-3px); box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+  .gallery-grid img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
+  .gallery-grid a:hover img { transform: scale(1.05); }
+  .lightbox { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.9); z-index: 9999; justify-content: center; align-items: center; cursor: pointer; }
+  .lightbox.open { display: flex; }
+  .lightbox img { max-width: 92%; max-height: 90vh; border-radius: 8px; box-shadow: 0 4px 30px rgba(0,0,0,0.5); }
+  .lightbox-close { position: fixed; top: 1.5rem; right: 2rem; color: white; font-size: 2.5rem; cursor: pointer; z-index: 10000; line-height: 1; }
+  .lightbox-nav { position: fixed; top: 50%; transform: translateY(-50%); color: rgba(255,255,255,0.7); font-size: 3rem; cursor: pointer; z-index: 10000; user-select: none; padding: 1rem; }
+  .lightbox-nav:hover { color: white; }
+  .lightbox-prev { left: 0.5rem; }
+  .lightbox-next { right: 0.5rem; }
+  .contact-section { background: var(--vw-blue); color: var(--white); padding: 3rem 1.5rem; text-align: center; }
+  .contact-section h2 { font-size: 2rem; margin-bottom: 1rem; }
+  .contact-section p { font-size: 1.1rem; opacity: 0.9; margin-bottom: 2rem; }
+  .contact-methods { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; margin-bottom: 2rem; }
+  .contact-card { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; padding: 1.5rem 2rem; text-decoration: none; color: var(--white); transition: background 0.2s, transform 0.2s; min-width: 250px; }
+  .contact-card:hover { background: rgba(255,255,255,0.2); transform: translateY(-3px); }
+  .contact-card .icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+  .contact-card .label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; opacity: 0.7; margin-bottom: 0.3rem; }
+  .contact-card .value { font-size: 1.2rem; font-weight: 600; }
+  .samba-link { color: var(--vw-accent); text-decoration: none; font-weight: 600; }
+  .samba-link:hover { text-decoration: underline; }
+  .footer { background: #11253a; color: rgba(255,255,255,0.5); text-align: center; padding: 1.5rem; font-size: 0.85rem; }
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 1.8rem; }
+    .hero .subtitle { font-size: 1rem; }
+    .price-tag { font-size: 1.6rem; }
+    .spec-pill { padding: 0.4rem 1rem; font-size: 0.85rem; }
+    .spec-pill strong { font-size: 1rem; }
+    .container { padding: 2rem 1rem; }
+    .section-title { font-size: 1.4rem; }
+    .overview-box { padding: 1.5rem; font-size: 1rem; }
+    .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+  }
 </style>
 </head>
 <body>
-  <h1>My Westy Photo Gallery</h1>
-  <div class="gallery">
-    <a href=photos/IMG_0539.jpg><img src=photos/IMG_0539.jpg alt=Photo 1></a>
-  <a href=photos/IMG_0540.jpg><img src=photos/IMG_0540.jpg alt=Photo 2></a>
-  <a href=photos/IMG_0541.jpg><img src=photos/IMG_0541.jpg alt=Photo 3></a>
-  <a href=photos/IMG_0896.jpg><img src=photos/IMG_0896.jpg alt=Photo 4></a>
-  <a href=photos/IMG_0897.jpg><img src=photos/IMG_0897.jpg alt=Photo 5></a>
-  <a href=photos/IMG_0898.jpg><img src=photos/IMG_0898.jpg alt=Photo 6></a>
-  <a href=photos/IMG_0899.jpg><img src=photos/IMG_0899.jpg alt=Photo 7></a>
-  <a href=photos/IMG_0901.jpg><img src=photos/IMG_0901.jpg alt=Photo 8></a>
-  <a href=photos/IMG_0903.jpg><img src=photos/IMG_0903.jpg alt=Photo 9></a>
-  <a href=photos/IMG_0904.jpg><img src=photos/IMG_0904.jpg alt=Photo 10></a>
-  <a href=photos/IMG_0905.jpg><img src=photos/IMG_0905.jpg alt=Photo 11></a>
-  <a href=photos/IMG_0906.jpg><img src=photos/IMG_0906.jpg alt=Photo 12></a>
-  <a href=photos/IMG_0907.jpg><img src=photos/IMG_0907.jpg alt=Photo 13></a>
-  <a href=photos/IMG_0908.jpg><img src=photos/IMG_0908.jpg alt=Photo 14></a>
-  <a href=photos/IMG_0909.jpg><img src=photos/IMG_0909.jpg alt=Photo 15></a>
-  <a href=photos/IMG_0910.jpg><img src=photos/IMG_0910.jpg alt=Photo 16></a>
-  <a href=photos/IMG_0911.jpg><img src=photos/IMG_0911.jpg alt=Photo 17></a>
-  <a href=photos/IMG_0912.jpg><img src=photos/IMG_0912.jpg alt=Photo 18></a>
-  <a href=photos/IMG_0913.jpg><img src=photos/IMG_0913.jpg alt=Photo 19></a>
-  <a href=photos/IMG_0915.jpg><img src=photos/IMG_0915.jpg alt=Photo 20></a>
-  <a href=photos/IMG_0916.jpg><img src=photos/IMG_0916.jpg alt=Photo 21></a>
-  <a href=photos/IMG_0917.jpg><img src=photos/IMG_0917.jpg alt=Photo 22></a>
-  <a href=photos/IMG_0918.jpg><img src=photos/IMG_0918.jpg alt=Photo 23></a>
-  <a href=photos/IMG_0919.jpg><img src=photos/IMG_0919.jpg alt=Photo 24></a>
-  <a href=photos/IMG_0920.jpg><img src=photos/IMG_0920.jpg alt=Photo 25></a>
-  <a href=photos/IMG_0922.jpg><img src=photos/IMG_0922.jpg alt=Photo 26></a>
-  <a href=photos/IMG_0924.jpg><img src=photos/IMG_0924.jpg alt=Photo 27></a>
-  <a href=photos/IMG_0925.jpg><img src=photos/IMG_0925.jpg alt=Photo 28></a>
-  <a href=photos/IMG_0926.jpg><img src=photos/IMG_0926.jpg alt=Photo 29></a>
-  <a href=photos/IMG_0927.jpg><img src=photos/IMG_0927.jpg alt=Photo 30></a>
-  <a href=photos/IMG_0928.jpg><img src=photos/IMG_0928.jpg alt=Photo 31></a>
-  <a href=photos/IMG_0929.jpg><img src=photos/IMG_0929.jpg alt=Photo 32></a>
-  <a href=photos/IMG_0930.jpg><img src=photos/IMG_0930.jpg alt=Photo 33></a>
-  <a href=photos/IMG_0931.jpg><img src=photos/IMG_0931.jpg alt=Photo 34></a>
-  <a href=photos/IMG_0932.jpg><img src=photos/IMG_0932.jpg alt=Photo 35></a>
-  <a href=photos/IMG_0933.jpg><img src=photos/IMG_0933.jpg alt=Photo 36></a>
-  <a href=photos/IMG_0934.jpg><img src=photos/IMG_0934.jpg alt=Photo 37></a>
-  <a href=photos/IMG_0935.jpg><img src=photos/IMG_0935.jpg alt=Photo 38></a>
-  <a href=photos/IMG_0936.jpg><img src=photos/IMG_0936.jpg alt=Photo 39></a>
-  <a href=photos/IMG_0937.jpg><img src=photos/IMG_0937.jpg alt=Photo 40></a>
-  <a href=photos/IMG_0938.jpg><img src=photos/IMG_0938.jpg alt=Photo 41></a>
-  <a href=photos/IMG_1482.jpg><img src=photos/IMG_1482.jpg alt=Photo 42></a>
-  <a href=photos/IMG_1483.jpg><img src=photos/IMG_1483.jpg alt=Photo 43></a>
-  <a href=photos/IMG_1484.jpg><img src=photos/IMG_1484.jpg alt=Photo 44></a>
-  <a href=photos/IMG_1485.jpg><img src=photos/IMG_1485.jpg alt=Photo 45></a>
-  <a href=photos/IMG_1486.jpg><img src=photos/IMG_1486.jpg alt=Photo 46></a>
-  <a href=photos/IMG_1487.jpg><img src=photos/IMG_1487.jpg alt=Photo 47></a>
-  <a href=photos/IMG_1490.jpg><img src=photos/IMG_1490.jpg alt=Photo 48></a>
-  <a href=photos/IMG_1491.jpg><img src=photos/IMG_1491.jpg alt=Photo 49></a>
-  <a href=photos/IMG_1492.jpg><img src=photos/IMG_1492.jpg alt=Photo 50></a>
-  <a href=photos/IMG_1493.jpg><img src=photos/IMG_1493.jpg alt=Photo 51></a>
-  <a href=photos/IMG_1494.jpg><img src=photos/IMG_1494.jpg alt=Photo 52></a>
-  <a href=photos/IMG_538.jpg><img src=photos/IMG_538.jpg alt=Photo 53></a>
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1>1987 VW Westfalia Camper Van</h1>
+    <div class="subtitle">Ready for your next adventure</div>
+    <div class="price-tag">$15,000</div>
+    <div class="specs-bar">
+      <div class="spec-pill"><strong>1987</strong>Year</div>
+      <div class="spec-pill"><strong>135,000</strong>Miles</div>
+      <div class="spec-pill"><strong>PA Inspected</strong>thru June 2027</div>
+      <div class="spec-pill"><strong>Ambler</strong>Pennsylvania</div>
+    </div>
+    <a href="#contact" class="cta-button">Contact About This Van</a>
+  </div>
+  <div class="scroll-hint">Scroll for details</div>
+</section>
+<div class="container">
+  <section class="section">
+    <h2 class="section-title">Overview</h2>
+    <div class="overview-box">A well-maintained Westfalia camper with original interior in good condition. Runs and drives well with a fresh Pennsylvania inspection (valid through June 2027). The van has been in our family since 2004 and has crossed the country multiple times. Currently at 135,000 miles.</div>
+    <div class="spec-grid">
+      <div class="spec-card"><div class="label">VIN</div><div class="value">WV2ZB0254HH085790</div></div>
+      <div class="spec-card"><div class="label">Condition</div><div class="value">Good - Runs &amp; Drives</div></div>
+      <div class="spec-card"><div class="label">Title</div><div class="value">Clean</div></div>
+      <div class="spec-card"><div class="label">Location</div><div class="value">Ambler, Pennsylvania</div></div>
+    </div>
+  </section>
+  <section class="section">
+    <h2 class="section-title">Mechanical History</h2>
+    <div class="timeline">
+      <div class="timeline-item"><div class="timeline-date">2004 - 84,000 miles</div><div class="timeline-text">Originally purchased at online auction. The van joined our family and began its cross-country adventures.</div></div>
+      <div class="timeline-item"><div class="timeline-date">2007-2010</div><div class="timeline-text">Multiple week-long cross-country trips, parked at airport long-term parking between trips. During this period we replaced the brakes, starter battery, radiator, and water pump.</div></div>
+      <div class="timeline-item"><div class="timeline-date">2011 - 108,000 miles</div><div class="timeline-text">Major rebuild - engine, transmission, and suspension all rebuilt, plus a complete paint job, after shipping the van home from Seattle.</div></div>
+      <div class="timeline-item"><div class="timeline-date">2012-2017</div><div class="timeline-text">Served as daily driver.</div></div>
+      <div class="timeline-item"><div class="timeline-date">2018-present</div><div class="timeline-text">Mostly parked in the driveway; driven periodically to keep everything running.</div></div>
+      <div class="timeline-item"><div class="timeline-date">Current</div><div class="timeline-text">Runs well at 135,000 miles. PA inspection valid through June 2027.</div></div>
+    </div>
+  </section>
+  <section class="section">
+    <h2 class="section-title">Features &amp; Upgrades</h2>
+    <div class="feature-grid">
+      <div class="feature-col">
+        <h3>Camper Features</h3>
+        <ul>
+          <li>Sink and stove - operational</li>
+          <li>Refrigerator - operational on 120V (cooled to 50F)</li>
+          <li>Pop-top tent - good condition</li>
+          <li>Door screens - good condition</li>
+          <li>Chemical toilet - included</li>
+          <li>Hand shower system &amp; privacy tent - included</li>
+          <li>Original interior - good condition</li>
+          <li>Table installed (clamp doesn't hold well)</li>
+        </ul>
+      </div>
+      <div class="feature-col">
+        <h3>2021 Upgrades</h3>
+        <ul>
+          <li>New Bluetooth stereo with hands-free calling</li>
+          <li>New speakers</li>
+          <li>New house battery - 50Ah Lithium LiFePO4 RV battery</li>
+          <li>House battery switch installed - use house battery without key in ignition</li>
+        </ul>
+      </div>
+      <div class="feature-col">
+        <h3>Known Issues</h3>
+        <ul>
+          <li class="issue">Paint failure in multiple areas - van was stored outside for 10+ years; body is otherwise solid</li>
+          <li class="issue">A/C blows cool air but needs a recharge</li>
+          <li class="issue">Upper bunk sleeping pad is missing</li>
+          <li class="issue">Table clamp doesn't hold in place well</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <h2 class="section-title">The Story</h2>
+    <div class="story-box">
+      <p>We bought this Westy in 2004 with 84,000 miles and have owned it ever since. Between 2007 and 2010, we took it on multiple cross-country road trips - driving coast to coast and leaving it in airport long-term parking between adventures. After shipping it home from Seattle in 2011, we invested in a full engine, transmission, and suspension rebuild at 108,000 miles so it would be ready for anything. It served as a daily driver from 2012 to 2017 and has been mostly parked since. It's a great van that deserves to get back on the road.</p>
+      <p style="margin-top: 1rem;">Contact for more info or to come take a look.</p>
+    </div>
+  </section>
+  <section class="section" id="gallery">
+    <h2 class="section-title">Photo Gallery</h2>
+    <p style="margin-bottom: 1.5rem; color: var(--light-text);">Click any photo to view full size. Use arrow keys to navigate.</p>
+    <div class="gallery-section">
+      <h3>Exterior</h3>
+      <div class="gallery-grid" id="gallery-exterior"></div>
+    </div>
+    <div class="gallery-section">
+      <h3>Interior &amp; Camper</h3>
+      <div class="gallery-grid" id="gallery-interior"></div>
+    </div>
+    <div class="gallery-section">
+      <h3>Engine &amp; Mechanical</h3>
+      <div class="gallery-grid" id="gallery-engine"></div>
+    </div>
+    <div class="gallery-section">
+      <h3>Paint &amp; Body Issues</h3>
+      <div class="gallery-grid" id="gallery-paint"></div>
+    </div>
+  </section>
 </div>
+<section class="contact-section" id="contact">
+  <h2>Interested? Get in Touch</h2>
+  <p>This 1987 Westfalia is looking for its next adventure partner.</p>
+  <div class="contact-methods">
+    <a href="mailto:westy@musictaxi.me" class="contact-card">
+      <div class="icon">&#9993;</div>
+      <div class="label">Email</div>
+      <div class="value">westy@musictaxi.me</div>
+    </a>
+    <a href="tel:+12678758020" class="contact-card">
+      <div class="icon">&#9742;</div>
+      <div class="label">Phone / Text</div>
+      <div class="value">(267) 875-8020</div>
+    </a>
+  </div>
+  <p>Also listed on <a href="https://www.thesamba.com/vw/classifieds/detail.php?id=2803167" class="samba-link" target="_blank" rel="noopener">TheSamba.com</a> - the original VW classifieds.</p>
+</section>
+<div class="footer">1987 VW Westfalia Camper Van &middot; Ambler, Pennsylvania &middot; $15,000 &middot; VIN: WV2ZB0254HH085790</div>
+<div class="lightbox" id="lightbox">
+  <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+  <span class="lightbox-nav lightbox-prev" onclick="navLightbox(-1)">&#8249;</span>
+  <img src="" id="lightbox-img" alt="">
+  <span class="lightbox-nav lightbox-next" onclick="navLightbox(1)">&#8250;</span>
+</div>
+<script>
+const photoCategories = {
+  exterior: [],
+  interior: [],
+  engine: [],
+  paint: []
+};
+const allPhotos = [
+  "IMG_0539.jpg","IMG_0540.jpg","IMG_0541.jpg",
+  "IMG_0896.jpg","IMG_0897.jpg","IMG_0898.jpg","IMG_0899.jpg","IMG_0901.jpg",
+  "IMG_0903.jpg","IMG_0904.jpg","IMG_0905.jpg","IMG_0906.jpg",
+  "IMG_0907.jpg","IMG_0908.jpg","IMG_0909.jpg","IMG_0910.jpg","IMG_0911.jpg",
+  "IMG_0912.jpg","IMG_0913.jpg","IMG_0915.jpg","IMG_0916.jpg","IMG_0917.jpg",
+  "IMG_0918.jpg","IMG_0919.jpg","IMG_0920.jpg","IMG_0922.jpg",
+  "IMG_0924.jpg","IMG_0925.jpg","IMG_0926.jpg","IMG_0927.jpg","IMG_0928.jpg",
+  "IMG_0929.jpg","IMG_0930.jpg","IMG_0931.jpg","IMG_0932.jpg","IMG_0933.jpg",
+  "IMG_0934.jpg","IMG_0935.jpg","IMG_0936.jpg","IMG_0937.jpg","IMG_0938.jpg",
+  "IMG_1482.jpg","IMG_1483.jpg","IMG_1484.jpg","IMG_1485.jpg","IMG_1486.jpg",
+  "IMG_1487.jpg","IMG_1490.jpg","IMG_1491.jpg","IMG_1492.jpg","IMG_1493.jpg",
+  "IMG_1494.jpg","IMG_538.jpg"
+];
+photoCategories.exterior = ["IMG_0539.jpg", "IMG_0540.jpg", "IMG_0541.jpg", "IMG_0896.jpg", "IMG_0897.jpg", "IMG_0898.jpg", "IMG_0899.jpg", "IMG_0901.jpg", "IMG_0903.jpg", "IMG_0904.jpg", "IMG_0905.jpg", "IMG_0906.jpg", "IMG_0907.jpg", "IMG_0908.jpg", "IMG_0909.jpg", "IMG_0910.jpg", "IMG_0911.jpg", "IMG_0912.jpg", "IMG_0913.jpg", "IMG_0915.jpg", "IMG_0916.jpg", "IMG_0917.jpg", "IMG_0918.jpg", "IMG_0919.jpg", "IMG_0920.jpg", "IMG_0922.jpg", "IMG_0924.jpg", "IMG_0925.jpg", "IMG_0926.jpg", "IMG_0927.jpg", "IMG_0928.jpg", "IMG_0929.jpg", "IMG_0930.jpg", "IMG_0931.jpg", "IMG_0932.jpg", "IMG_0933.jpg", "IMG_0934.jpg", "IMG_0935.jpg", "IMG_0936.jpg", "IMG_0937.jpg", "IMG_0938.jpg", "IMG_1482.jpg", "IMG_1483.jpg", "IMG_1484.jpg", "IMG_1485.jpg", "IMG_1486.jpg", "IMG_1487.jpg", "IMG_1490.jpg", "IMG_1491.jpg", "IMG_1492.jpg", "IMG_1493.jpg", "IMG_1494.jpg", "IMG_538.jpg"];
+function buildGallery(containerId, photos) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  container.innerHTML = photos.map(p =>
+    '<a href="photos/' + p + '" onclick="return openLightbox(event, \'photos/' + p + '\')"><img src="photos/' + p + '" alt="' + p + '" loading="lazy"></a>'
+  ).join('');
+}
+buildGallery('gallery-exterior', photoCategories.exterior);
+buildGallery('gallery-interior', photoCategories.interior);
+buildGallery('gallery-engine', photoCategories.engine);
+buildGallery('gallery-paint', photoCategories.paint);
+['exterior','interior','engine','paint'].forEach(function(cat) {
+  var section = document.getElementById('gallery-' + cat).closest('.gallery-section');
+  if (photoCategories[cat].length === 0) { section.style.display = 'none'; }
+});
+var currentPhotos = [];
+var currentIndex = 0;
+function getAllPhotos() {
+  return photoCategories.exterior.concat(photoCategories.interior, photoCategories.engine, photoCategories.paint);
+}
+function openLightbox(e, src) {
+  e.preventDefault();
+  currentPhotos = getAllPhotos();
+  currentIndex = currentPhotos.indexOf(src.replace('photos/',''));
+  if (currentIndex < 0) currentIndex = 0;
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  return false;
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function navLightbox(dir) {
+  currentIndex = (currentIndex + dir + currentPhotos.length) % currentPhotos.length;
+  document.getElementById('lightbox-img').src = 'photos/' + currentPhotos[currentIndex];
+}
+document.addEventListener('keydown', function(e) {
+  if (!document.getElementById('lightbox').classList.contains('open')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') navLightbox(-1);
+  if (e.key === 'ArrowRight') navLightbox(1);
+});
+document.getElementById('lightbox').addEventListener('click', function(e) {
+  if (e.target.id === 'lightbox') closeLightbox();
+});
+document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+  a.addEventListener('click', function(e) {
+    var target = document.querySelector(a.getAttribute('href'));
+    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+  });
+});
+</script>
 </body>
 </html>
