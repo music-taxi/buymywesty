@@ -255,10 +255,7 @@ buildGallery('gallery-exterior', photoCategories.exterior);
 buildGallery('gallery-interior', photoCategories.interior);
 buildGallery('gallery-engine', photoCategories.engine);
 buildGallery('gallery-paint', photoCategories.paint);
-['exterior','interior','engine','paint'].forEach(function(cat) {
-  var section = document.getElementById('gallery-' + cat).closest('.gallery-section');
-  if (photoCategories[cat].length === 0) { section.style.display = 'none'; }
-});
+
 var currentPhotos = [];
 var currentIndex = 0;
 function getAllPhotos() {
